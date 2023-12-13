@@ -1,6 +1,7 @@
 package com.dictionaryapp.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import java.util.Set;
 @Table(name="languages")
 public class Language extends BaseEntity {
     @Enumerated(EnumType.STRING)
+    @Column(unique = true, nullable = false)
     private  LanguageEnum name;
 
     private String description;

@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.time.LocalDate;
+
 @Entity
 @Table(name = "words")
 public class Word extends BaseEntity {
@@ -17,11 +19,15 @@ public class Word extends BaseEntity {
     @Column(nullable = false)
     @Size(min = 2, max = 200)
     private String example;
+    @Column(name = "input_date", nullable = false)
+    private LocalDate inputDate;
+
     @ManyToOne
     @NotNull
     private Language languages;
     @ManyToOne
     private User addedBy;
+
 
 
     public String getTerm() {
@@ -62,5 +68,13 @@ public class Word extends BaseEntity {
 
     public void setAddedBy(User addedBy) {
         this.addedBy = addedBy;
+    }
+
+    public LocalDate getInputDate() {
+        return inputDate;
+    }
+
+    public void setInputDate(LocalDate inputDate) {
+        this.inputDate = inputDate;
     }
 }
